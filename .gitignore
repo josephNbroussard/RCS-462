@@ -1,0 +1,4 @@
+token
+database/*.db
+cogs/__pycache__/*
+cogs/basic/__pycache__/*

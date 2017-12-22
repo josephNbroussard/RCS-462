@@ -1,0 +1,6 @@
+CREATE TABLE cache (item TEXT, value TEXT )
+CREATE TABLE citizenship_form (id TEXT, reason TEXT, country TEXT, age TEXT, date TEXT, approved TEXT, fb_auth_code TEXT, fb_link TEXT)
+CREATE TABLE member (id TEXT, last_msg TEXT, party_role_id TEXT, citizenship_status TEXT, position_id TEXT)
+CREATE TABLE party (role_id TEXT, leader_role_id TEXT, name TEXT, color TEXT, channel_id TEXT)
+CREATE TABLE position (id TEXT, name TEXT, type TEXT)
+CREATE TABLE statistics (date TEXT, member_count TEXT, party_member_tuple TEXT)
