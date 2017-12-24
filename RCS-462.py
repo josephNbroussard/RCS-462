@@ -29,11 +29,10 @@ bot = commands.Bot(command_prefix=get_prefix, description='Commands for RCS-462'
 
 
 @bot.event
-@asyncio.coroutine
-def on_ready():
+async def on_ready():
     print('Logged in as: {} - {}\nVersion: {}\n'.format(bot.user.name,bot.user.id,discord.__version__))
     # Changes our bots Playing Status. type=1(streaming) for a standard game you could remove type and url.
-    yield from bot.change_presence(game=discord.Game(name='Supervising', type=0))
+    await bot.change_presence(game=discord.Game(name='Supervising', type=0))
     # Here we load our extensions(cogs) listed above in [initial_extensions].
     if __name__ == '__main__':
         for extension in initial_extensions:

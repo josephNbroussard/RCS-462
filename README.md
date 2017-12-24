@@ -1,2 +1,2 @@
 # RCS-462
-A bot for "Classical Empire" discord server.
+A discord bot for "Classical Empire" discord server.

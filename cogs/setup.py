@@ -15,7 +15,7 @@ class Setup:
             for guild in bot.guilds:
                 db.new_db(guild)
                 db.cache_getadd(guild,"admin_roles")
-                for role in server.roles:
+                for role in guild.roles:
                     print(role.name+":"+str(role.id))
             return
         except Exception as e:
@@ -24,19 +24,18 @@ class Setup:
     @commands.command(name='setupadmin')
     @commands.check(check.check_admin)
     @commands.guild_only()
-    @asyncio.coroutine
-    def cmd_setupadmin(self, ctx, act_type: str=None ,role: discord.Role=None):
+    async def cmd_setupadmin(self, ctx, act_type: str=None ,role: discord.Role=None):
         """Add/remove/list roles who can access admin commands."""
         ch = ctx.channel
         try:
             print(act_type)
             if act_type is None or act_type not in ["add","remove","list"]:
                 print("None")
-                yield from ch.send(embed=status.wrong_input("You can either input 'add', 'remove' or 'list'. e.g !setupadmin add @admin"))
+                await ch.send(embed=status.wrong_input("You can either input 'add', 'remove' or 'list'. e.g !setupadmin add @admin"))
                 return
 
             if role == None:
-                yield from ch.send(embed=status.wrong_input("You need to input a role too!"))
+                await ch.send(embed=status.wrong_input("You need to input a role too!"))
                 return
                 
             if act_type == "list":
@@ -51,7 +50,7 @@ class Setup:
         
         except Exception as e:
             try:   
-                yield from ch.send(embed=status.error(e))
+                await ch.send(embed=status.error(e))
                 print(e)
             except:
                 print(e)
@@ -59,8 +58,7 @@ class Setup:
     @commands.command(name='setupchannel')
     @commands.check(check.check_admin)
     @commands.guild_only()
-    @asyncio.coroutine
-    def cmd_setupchannel(self, ctx, channel: discord.TextChannel=None):
+    async def cmd_setupchannel(self, ctx, channel: discord.TextChannel=None):
         """Change the bot channel."""
         ch = ctx.channel
         try:
@@ -72,7 +70,7 @@ class Setup:
         
         except Exception as e:
             try:   
-                yield from ch.send(embed=status.error(e))
+                await ch.send(embed=status.error(e))
                 print(e)
             except:
                 print(e)

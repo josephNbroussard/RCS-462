@@ -57,8 +57,7 @@ class Member:
     #CASUAL CMDS
     @commands.command(name='memberinfo')
     @commands.guild_only()
-    @asyncio.coroutine
-    def cmd_memberinfo(self, ctx, member: discord.Member=None):
+    async def cmd_memberinfo(self, ctx, member: discord.Member=None):
         """Re-check all members in the server and update them in the database. Will be also done on each startup of the bot unless specified otherwise."""
         try:
             guild = ctx.guild
@@ -69,7 +68,7 @@ class Member:
    
         except Exception as e:
             try:
-                yield from ch.send(embed=status.error(e))
+                await ch.send(embed=status.error(e))
                 print(e)
             except:
                 print(e)
@@ -80,8 +79,7 @@ class Member:
     @commands.command(name='membercheck')
     @commands.check(check.check_admin)
     @commands.guild_only()
-    @asyncio.coroutine
-    def cmd_membercheck(self, ctx):
+    async def cmd_membercheck(self, ctx):
         """Re-check all members in the server and update them in the database. Will be also done on each startup of the bot unless specified otherwise."""
         try:
             guild = ctx.guild
@@ -94,7 +92,7 @@ class Member:
    
         except Exception as e:
             try:   
-                yield from ch.send(embed=status.error(e))
+                await ch.send(embed=status.error(e))
                 print(e)
             except:
                 print(e)
